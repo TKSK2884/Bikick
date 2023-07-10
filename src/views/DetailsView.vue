@@ -6,14 +6,13 @@
                     :class="$style.mark"
                     v-on:click="clickMark(targetObject.id)"
                 >
-                    <div v-if="gettedStore[transHaveID] == true">
+                    <div v-if="gettedStore[convertedID] == true">
                         <img :src="require(`@/assets/Vector1.png`)" />
                     </div>
                     <div v-else>
                         <img :src="require(`@/assets/Vector0.png`)" />
                     </div>
                 </div>
-                <!-- <img :src="`${targetObject.thumbnail}`" /> -->
             </div>
             <div :class="$style.textBox">
                 <div :class="$style.name">{{ targetObject.name }}</div>
@@ -30,17 +29,15 @@ import { Component, Vue } from "vue-property-decorator";
 import productsList from "@/assets/products.json";
 
 @Component({
-    components: {
-        // HelloWorld,
-    },
+    components: {},
 })
 export default class DetailsView extends Vue {
     productsArray: any[] = [];
     targetObject: any = {};
     gettedStore: any = {};
 
-    haveID: any = this.$route.query.id;
-    transHaveID: number = Number(this.haveID);
+    getID: any = this.$route.query.id;
+    convertedID: number = Number(this.getID);
 
     beforeUpdate() {
         this.gettedStore = this.$store.getters.getMyMark;
@@ -48,16 +45,16 @@ export default class DetailsView extends Vue {
     mounted() {
         this.productsArray = productsList.products;
         this.gettedStore = this.$store.getters.getMyMark;
-        // console.log(this.gettedStore[this.transHaveID]);
+
         for (let i: number = 0; i < this.productsArray.length; i++) {
-            if (this.productsArray[i].id == this.transHaveID) {
+            if (this.productsArray[i].id == this.convertedID) {
                 this.targetObject = this.productsArray[i];
-                this.$forceUpdate(); // <- 지우지마
+                this.$forceUpdate();
                 break;
             }
         }
     }
-    clickMark(getID: any) {
+    clickMark(getID: number) {
         if (this.gettedStore[getID] == true) {
             this.gettedStore[getID] = false;
         } else {
@@ -65,7 +62,7 @@ export default class DetailsView extends Vue {
         }
         this.gettedStore = this.$store.getters.getMyMark;
         this.$store.commit("setMyMark", this.gettedStore);
-        // console.log(this.gettedStore[getID]);
+
         this.$forceUpdate();
     }
 
@@ -82,12 +79,6 @@ export default class DetailsView extends Vue {
         this.gettedStore["check"] = true;
         this.$store.commit("setMyMark", this.gettedStore);
     }
-    // getImageMark(): any {
-    //   if (this.targetObject == undefined) return {};
-    //   return {
-    //     backgroundImage: `url("@/assets/Vector2.png"$)`,
-    //   };
-    // }
 }
 </script>
 
@@ -95,29 +86,37 @@ export default class DetailsView extends Vue {
 @import "@/assets/utils.scss";
 .container {
     width: 100%;
+
     padding-top: 200px;
+
     @include mobile {
         padding-top: 70px;
     }
 }
 .centerContainer {
     display: flex;
+
     @include mobile {
         display: block;
         text-align: center;
     }
+
     .bikeIMG {
         width: 400px;
         height: 400px;
+
         margin-left: 40px;
+
         background-size: cover;
         background-repeat: no-repeat;
-        // background-image: ;
+
         @include mobile {
-            margin: 0;
-            display: inline-block;
             width: 100%;
             height: 100vw;
+
+            margin: 0;
+
+            display: inline-block;
         }
         img {
             width: 100%;
@@ -126,6 +125,7 @@ export default class DetailsView extends Vue {
         .mark {
             width: 24px;
             height: 24px;
+
             position: relative;
             top: calc(100% - 35px);
             left: calc(100% - 30px);
@@ -134,39 +134,49 @@ export default class DetailsView extends Vue {
 }
 .textBox {
     margin-left: 53px;
+
     @include mobile {
-        text-align: left;
+        margin: 0;
         padding-left: 20px;
         padding-top: 10px;
-        margin: 0;
+
+        text-align: left;
     }
     .name {
-        font-size: 48px;
         padding-bottom: 12px;
+
+        font-size: 48px;
         font-weight: bold;
+
         @include mobile {
-            font-size: 32px;
             padding-bottom: 6px;
+
+            font-size: 32px;
         }
     }
     .date {
-        font-size: 24px;
         padding-bottom: 44px;
+
+        font-size: 24px;
         @include mobile {
-            font-size: 15px;
             padding-bottom: 16px;
+
+            font-size: 15px;
         }
     }
     .price {
-        font-size: 32px;
         padding-bottom: 29px;
+
+        font-size: 32px;
         @include mobile {
-            font-size: 18px;
             padding-bottom: 20px;
+
+            font-size: 18px;
         }
     }
     .contents {
         white-space: pre-wrap;
+
         font-size: 15px;
         @include mobile {
             font-size: 15px;

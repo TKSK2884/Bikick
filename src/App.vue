@@ -17,14 +17,11 @@ import NavMenu from "@/components/NavMenu.vue";
 import Footer from "@/components/Footer.vue";
 import linkBox from "@/components/LinkBoxView.vue";
 
-// import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-
 @Component({
     components: {
         NavMenu,
         Footer,
         linkBox,
-        // HelloWorld,
     },
 })
 export default class AppView extends Vue {}
@@ -32,6 +29,7 @@ export default class AppView extends Vue {}
 
 <style lang="scss" module>
 .container {
+    width: 100%;
 }
 .viewBox {
     width: 100%;

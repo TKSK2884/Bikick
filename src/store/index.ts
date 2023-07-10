@@ -5,7 +5,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        myMarkArray: {},
         myMark: {},
         myNumber: 1325967,
     },

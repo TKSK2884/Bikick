@@ -1,6 +1,6 @@
 <template>
-    <div :class="$style.centerLinkBox">
-        <div :class="$style.linkBox">
+    <div :class="$style.box">
+        <div :class="$style.link">
             <router-link :to="'/Bi'">BI </router-link>
             <router-link :to="'/Used'">중고매물보기</router-link>
             <router-link :to="'/Download'">앱 다운로드</router-link>
@@ -10,22 +10,19 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-// import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
 @Component({
-    components: {
-        // HelloWorld,
-    },
+    components: {},
 })
 export default class LinkView extends Vue {}
 </script>
 
 <style lang="scss" module>
 @import "@/assets/utils.scss";
-.centerLinkBox {
+.box {
     width: 100%;
 }
-.linkBox {
+.link {
     padding-top: 60px;
     padding-bottom: 60px;
 

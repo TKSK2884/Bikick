@@ -1,9 +1,9 @@
 <template>
     <div :class="$style.container">
         <div :class="$style.centerContainer">
-            <div v-for="bike in productsAraay" :key="bike.id">
+            <div v-for="(bike, index) in productsAraay" :key="index">
                 <div :class="$style.bikeBox">
-                    <router-link :to="`/details?id=${bike.id}`">
+                    <router-link :to="`/details?id=${bike.id ?? 0}`">
                         <div :class="$style.thumbnail">
                             <img :src="`${bike.thumbnail}`" />
                             <div
@@ -38,16 +38,15 @@ import { Component, Vue } from "vue-property-decorator";
 import productsList from "@/assets/products.json";
 
 @Component({
-    components: {
-        // HelloWorld,
-    },
+    components: {},
 })
 export default class UsedView extends Vue {
-    // checkMark: number = 91;
     productsAraay: any[] = [];
     targetId: number = 0;
+
     markUpdateArray: any[] = [];
     markCheckArray: any[] = [];
+
     gettedStore: any = {};
 
     setObjMark() {
@@ -55,15 +54,13 @@ export default class UsedView extends Vue {
             return;
         } else {
             for (let i: number = 0; i < this.productsAraay.length; i++) {
-                //(<{ id: number }>this.objMark).id = this.productsAraay[i].id;
-                let setID: any = this.productsAraay[i].id;
+                let setID: number = this.productsAraay[i].id;
                 this.gettedStore[setID] = false;
-                //console.log(this.gettedStore[setID]);
             }
             this.gettedStore["check"] = true;
         }
     }
-    clickMark(getID: any) {
+    clickMark(getID: number) {
         if (this.gettedStore[getID] == true) {
             this.gettedStore[getID] = false;
         } else {
@@ -71,15 +68,14 @@ export default class UsedView extends Vue {
         }
         this.gettedStore = this.$store.getters.getMyMark;
         this.$store.commit("setMyMark", this.gettedStore);
-        // console.log(this.gettedStore[getID]);
+
         this.$forceUpdate();
     }
-    // pageChange() {
-    //   this.$router.push({ path: "/details" });
-    // }
+
     mounted() {
         this.productsAraay = productsList.products;
         this.gettedStore = this.$store.getters.getMyMark;
+        console.log(this.gettedStore);
         this.setObjMark();
     }
 
@@ -94,37 +90,47 @@ export default class UsedView extends Vue {
 <style lang="scss" module>
 @import "@/assets/utils.scss";
 .container {
+    width: 100%;
+
     .centerContainer {
-        margin-right: auto;
-        margin-left: auto;
         width: 100%;
         max-width: 1280px;
+
+        margin-right: auto;
+        margin-left: auto;
         padding-top: 120px;
-        justify-content: center;
+
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
     }
 }
 .bikeBox {
-    text-align: center;
     margin: 20px;
     margin-top: 28px;
-    color: #000000;
+
+    text-align: center;
     text-decoration-line: none;
+
+    color: #000000;
+
     @include mobile {
         width: 100%;
         max-width: 140px;
+
         margin: 5px;
     }
     a {
-        color: #333333;
         text-decoration-line: none;
+
+        color: #333333;
     }
     .text {
         padding-top: 10px;
         .name {
             font-size: 15px;
             font-weight: bold;
+
             @include mobile {
                 margin-left: auto;
                 margin-right: auto;
@@ -132,7 +138,9 @@ export default class UsedView extends Vue {
         }
         .date {
             padding-top: 4px;
+
             font-size: 15px;
+
             @include mobile {
                 margin-left: auto;
                 margin-right: auto;
@@ -141,6 +149,7 @@ export default class UsedView extends Vue {
     }
     .thumbnail {
         max-width: 200px;
+
         position: relative;
         @include mobile {
             width: 100%;
@@ -148,11 +157,13 @@ export default class UsedView extends Vue {
         }
         img {
             width: 100%;
+
             border-radius: 24px;
         }
         .mark {
             width: 24px;
             height: 24px;
+
             position: absolute;
             top: calc(100% - 35px);
             left: calc(100% - 30px);

@@ -1,19 +1,16 @@
 <template>
     <div :class="$style.nav">
         <router-link :to="'/'">
-            <div :class="$style.centerLogo"></div>
+            <div :class="$style.logo"></div>
         </router-link>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-// import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
 @Component({
-    components: {
-        // HelloWorld,
-    },
+    components: {},
 })
 export default class NavMenu extends Vue {}
 </script>
@@ -25,14 +22,13 @@ export default class NavMenu extends Vue {}
     height: 118px;
 
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.356);
+    background-color: #ffffff5b;
     z-index: 9;
 
     @include mobile {
         height: 70px;
     }
-    .centerLogo {
-        width: 200px;
+    .logo {
         max-width: 200px;
         height: 70px;
 

@@ -1,6 +1,6 @@
 <template>
-    <div :class="$style.container">
-        <div :class="$style.centerContainer">
+    <div :class="$style.index">
+        <div :class="$style.container">
             <div :class="$style.logo"></div>
             <div :class="$style.message">
                 이륜차의 상징인 <span :class="$style.bold">‘오토바이’</span> 를
@@ -15,47 +15,54 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-// import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
 @Component({
-    components: {
-        // HelloWorld,
-    },
+    components: {},
 })
 export default class BiView extends Vue {}
 </script>
 
 <style lang="scss" module>
 @import "@/assets/utils.scss";
-.container {
-    .centerContainer {
-        display: flex;
+.index {
+    width: 100%;
+
+    .container {
         max-width: 1280px;
-        padding-top: 300px;
-        padding-bottom: 300px;
-        justify-content: space-between;
-        align-items: center;
+
         margin-left: auto;
         margin-right: auto;
+        padding-top: 300px;
+        padding-bottom: 300px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
         @include mobile {
-            display: block;
-            text-align: center;
             padding-bottom: 200px;
             padding-top: 200px;
+
+            display: block;
+
+            text-align: center;
         }
     }
     .logo {
         width: 100%;
         max-width: 415px;
         height: 150px;
+
         margin-left: 32px;
+
         background-image: url("@/assets/group3.png");
         background-repeat: no-repeat;
         background-size: contain;
-        // background-position: center center;
+
         @include mobile {
             max-width: 320px;
             height: 116px;
+
             @include alignCenter;
         }
         img {
@@ -67,13 +74,16 @@ export default class BiView extends Vue {}
         font-weight: bold;
     }
     .colorRed {
-        color: #cf0000;
         font-weight: bold;
+
+        color: #cf0000;
     }
     .message {
         font-size: 32px;
+
         @include mobile {
             padding-top: 32px;
+
             font-size: 18px;
         }
     }
