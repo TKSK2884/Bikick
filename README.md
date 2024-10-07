@@ -6,9 +6,9 @@
 - **직관적인 UI**를 통해 사용자들이 쉽게 오토바이를 탐색하고 상품의 세부 사항을 확인 할 수 있습니다.
 
 ## 🚀 프로젝트 데모
-<img src="https://github.com/user-attachments/assets/0d8f45aa-60f5-42ec-9048-6e96ff0f8e7e" width="600px" height="480px">
-
 - [바이킥 데모 페이지](https://bikick.highground.kr/)
+
+<img src="https://github.com/user-attachments/assets/0d8f45aa-60f5-42ec-9048-6e96ff0f8e7e" width="600px" height="480px">
 
 ## 🔧 사용 기술 스택
 Vue 2.0, TypeScript, SCSS
